@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Jennyrose 💌</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #ff4d6d, #ff758c, #ffa8c6);
+            font-family: 'Georgia', serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 10px white;
+            animation: sparkleAnimation 2s infinite ease-in-out;
+        }
+
+        @keyframes sparkleAnimation {
+            0% { opacity: 0; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+            100% { opacity: 0; transform: scale(0.8); }
+        }
+
+        .envelope-container {
+            position: relative;
+            width: 250px;
+            height: 220px;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .envelope {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #d63384;
+            clip-path: polygon(50% 0%, 100% 30%, 100% 100%, 0% 100%, 0% 30%);
+            border-radius: 50% 50% 0 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .envelope-text {
+            position: absolute;
+            top: 60%;
+            width: 100%;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            z-index: 4;
+        }
+
+        .envelope-flap {
+            position: absolute;
+            width: 100%;
+            height: 50%;
+            background: #b82e6b;
+            top: 0;
+            clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+            transform-origin: top;
+            transition: transform 0.6s ease-in-out, opacity 0.4s;
+            z-index: 3;
+        }
+
+        .letter {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 220px;
+            height: 160px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            padding: 12px;
+            text-align: justify;
+            font-size: 13px;
+            line-height: 1.5;
+            font-family: 'Georgia', serif;
+            color: #333;
+            opacity: 0;
+            overflow-y: auto;
+            max-height: 160px;
+            transition: opacity 0.8s ease-in-out;
+            z-index: 2;
+        }
+
+        .letter h1 {
+            color: #d63384;
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 5px;
+            text-shadow: 1px 1px 5px rgba(214, 51, 132, 0.5);
+        }
+
+        .dear-title {
+            color: #d63384;
+            font-weight: bold;
+            text-shadow: 2px 2px 5px rgba(214, 51, 132, 0.5);
+        }
+
+        .love-message {
+            font-weight: bold;
+            text-align: center;
+            color: #d63384;
+            text-shadow: 2px 2px 5px rgba(214, 51, 132, 0.5);
+        }
+
+        .opened .envelope-flap {
+            transform: rotateX(180deg);
+            opacity: 0;
+        }
+
+        .opened .letter {
+            opacity: 1;
+        }
+
+        .toggle-btn {
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #d63384;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
+        .toggle-btn:hover {
+            background: #b82e6b;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="sparkles"></div>
+
+    <div class="envelope-container closed" id="envelope">
+        <div class="envelope">
+            <div class="envelope-text">To: Jennyrose 💌</div>
+        </div>
+        <div class="envelope-flap"></div>
+
+        <div class="letter">
+            <h1 class="dear-title">Dear Jennyrose,</h1>
+            <p>
+                With this message, I hope you’ll appreciate what I’ve created for you.
+                You are incredibly special to me, even though we may sometimes hurt each other.
+                More than anything, I want to make sure that you’re happy with this small token of appreciation.
+                Please stay by my side and always be yourself.
+                Don’t be afraid to try new things and grow into the best version of yourself.
+            </p>
+            <p>
+                Thank you for all the love and effort you’ve given me.
+                Every moment, every gesture, and every memory we’ve shared will forever be my greatest treasure.
+                Especially on this special day.
+            </p>
+            <h1 class="love-message">I love you so much, my dearest Kikay. 💌❤️‍🩹</h1>
+        </div>
+
+        <button class="toggle-btn" onclick="toggleEnvelope()">Open</button>
+    </div>
+
+    <script>
+        function toggleEnvelope() {
+            let envelope = document.getElementById("envelope");
+            let button = document.querySelector(".toggle-btn");
+            if (envelope.classList.contains("closed")) {
+                envelope.classList.remove("closed");
+                envelope.classList.add("opened");
+                button.textContent = "Close";
+            } else {
+                envelope.classList.remove("opened");
+                envelope.classList.add("closed");
+                button.textContent = "Open";
+            }
+        }
+
+        function createSparkles() {
+            let sparkleContainer = document.getElementById("sparkles");
+            for (let i = 0; i < 20; i++) {
+                let sparkle = document.createElement("div");
+                sparkle.classList.add("sparkle");
+
+                let x = Math.random() * window.innerWidth;
+                let y = Math.random() * window.innerHeight;
+                let size = Math.random() * 6 + 4;
+
+                sparkle.style.left = `${x}px`;
+                sparkle.style.top = `${y}px`;
+                sparkle.style.width = `${size}px`;
+                sparkle.style.height = `${size}px`;
+                sparkle.style.animationDuration = `${Math.random() * 2 + 1}s`;
+
+                sparkleContainer.appendChild(sparkle);
+            }
+        }
+
+        createSparkles();
+    </script>
+
+</body>
+</html>
